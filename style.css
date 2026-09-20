@@ -796,3 +796,70 @@ img.lazy-loaded{opacity:1}
 }
 .media-btn:hover{background:var(--gradient);color:var(--void)}
 .delete-btn:hover{background:#ff4d4d;color:#fff}
+
+#adminToggleBtn{
+  position:fixed;left:22px;bottom:22px;z-index:500;
+  width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(11,15,22,.7);
+  border:1px solid var(--border-strong);
+  backdrop-filter:blur(10px);
+  color:var(--text-faint);font-size:.95rem;
+  opacity:.55;
+  transition:opacity .3s ease,border-color .3s ease,color .3s ease;
+}
+#adminToggleBtn:hover{opacity:1;border-color:var(--cyan);color:var(--cyan)}
+
+.admin-modal-overlay{
+  position:fixed;inset:0;z-index:3500;
+  background:rgba(2,4,8,.85);
+  backdrop-filter:blur(8px);
+  display:none;align-items:center;justify-content:center;
+  padding:24px;
+}
+.admin-modal-overlay.open{display:flex}
+.admin-modal{
+  width:100%;max-width:380px;
+  padding:32px;
+  text-align:center;
+}
+.admin-modal h3{font-family:var(--font-display);font-size:1.2rem;margin-bottom:8px}
+.admin-modal p{color:var(--text-dim);font-size:.85rem;margin-bottom:22px}
+.admin-modal input{
+  width:100%;padding:13px 16px;border-radius:10px;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border-strong);
+  color:var(--text);font-size:.9rem;margin-bottom:16px;
+}
+.admin-modal input:focus{outline:none;border-color:var(--cyan)}
+.admin-modal-actions{display:flex;gap:10px;justify-content:center}
+.admin-status{
+  margin-top:14px;font-size:.8rem;min-height:1.2em;
+  font-family:var(--font-mono);
+}
+.admin-status.error{color:#ff6b6b}
+.admin-status.success{color:var(--cyan)}
+
+body.admin-mode [data-editable]{
+  outline:1px dashed rgba(79,216,255,.35);
+  outline-offset:3px;
+  cursor:text;
+  border-radius:4px;
+  transition:outline-color .2s ease,background .2s ease;
+}
+body.admin-mode [data-editable]:focus{
+  outline:1px solid var(--cyan);
+  background:rgba(79,216,255,.06);
+}
+
+#adminToolbar{
+  position:fixed;top:0;left:0;right:0;z-index:3400;
+  display:none;
+  align-items:center;justify-content:center;gap:12px;
+  padding:14px;
+  background:rgba(5,7,10,.92);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border-strong);
+}
+#adminToolbar.open{display:flex}
+#adminToolbar span{font-family:var(--font-mono);font-size:.78rem;color:var(--cyan)}
