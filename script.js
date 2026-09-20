@@ -541,7 +541,7 @@
       if (confirm('Discard changes and exit edit mode?')) exitEditMode(true);
     });
 
-    saveBtn.addEventListener('click', async () => {
+        saveBtn.addEventListener('click', async () => {
       if (!token) { setStatus('Session expired, log in again.', 'error'); return; }
       saveBtn.disabled = true;
       saveBtn.textContent = 'Saving...';
@@ -553,7 +553,7 @@
         if (!getRes.ok) throw new Error('Could not read current file');
         const fileData = await getRes.json();
 
-        removeMediaOverlays(); // don't save overlay buttons into the HTML
+        removeMediaOverlays();
         const clone = document.documentElement.cloneNode(true);
         clone.querySelectorAll('[data-editable]').forEach(el => {
           el.removeAttribute('contenteditable');
@@ -579,14 +579,15 @@
           const err = await putRes.json().catch(() => ({}));
           throw new Error(err.message || 'Save failed');
         }
-        alert('Saved! Changes will appear on the live site shortly.');
-        exitEditMode(false);
-      } catch (err) {
-        alert('Error: ' + (err.message || 'Save failed'));
-        buildMediaOverlays();
-      } finally {
         saveBtn.disabled = false;
         saveBtn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> Save to GitHub';
+        setStatus('Saved! Changes will appear on the live site shortly.', 'success');
+        setTimeout(() => exitEditMode(false), 1200); // مهلة بسيطة عشان تشوف رسالة النجاح قبل ما ترجع الصفحة
+      } catch (err) {
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> Save to GitHub';
+        setStatus('Error: ' + (err.message || 'Save failed'), 'error');
+        buildMediaOverlays();
       }
     });
 
