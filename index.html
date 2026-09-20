@@ -86,6 +86,27 @@
       </button>
     </div>
   </div>
+      </div>
+  </div>
+
+  <!-- Admin toggle + login modal (outside nav-inner) -->
+  <button id="adminToggleBtn" aria-label="Admin edit mode" title="Admin">
+    <i class="fa-solid fa-lock"></i>
+  </button>
+
+  <div class="admin-modal-overlay" id="adminModalOverlay">
+    <div class="admin-modal glass">
+      <h3>Admin Login</h3>
+      <p>Enter your GitHub Personal Access Token to enable editing.</p>
+      <input type="password" id="adminTokenInput" placeholder="ghp_xxxxxxxxxxxx" autocomplete="off">
+      <div class="admin-modal-actions">
+        <button class="btn btn-primary btn-sm" id="adminLoginBtn">Unlock</button>
+        <button class="btn btn-ghost btn-sm" id="adminCloseModalBtn">Cancel</button>
+      </div>
+      <p class="admin-status" id="adminStatus"></p>
+    </div>
+  </div>
+</header>
 </header>
 
 <main id="main">
